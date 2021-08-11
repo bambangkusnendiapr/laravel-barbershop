@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // $this->call(LaratrustSeeder::class);
-        // DB::table('locations')->insert([
-        //     ['name' => 'DEDAN KIMATHI, NYERI',],
-        //     ['name' => 'KAMAKWA, NYERI',],
-        //     ['name' => 'NYERI TOWN, NYERI',],
-        // ]);
+        $this->call(LaratrustSeeder::class);
+        DB::table('locations')->insert([
+            ['name' => 'DEDAN KIMATHI, NYERI',],
+            ['name' => 'KAMAKWA, NYERI',],
+            ['name' => 'NYERI TOWN, NYERI',],
+        ]);
 
         DB::table('categories')->insert([
             ['name' => 'HAIRCUTS',],
@@ -68,6 +68,26 @@ class DatabaseSeeder extends Seeder
                 'duration' => 30,
                 'time' => 'mins',
                 'price' => 400,
+            ],
+        ]);
+
+        DB::table('payments')->insert([
+            [
+                'bank' => 'BRI',
+                'cabang' => 'Bandung',
+                'an' => 'Boy',
+                'norek' => '123456789',
+            ],
+            [
+                'bank' => 'BNI',
+                'cabang' => 'Cimahi',
+                'an' => 'Bro',
+                'norek' => '987654321',
+            ],[
+                'bank' => 'Mandiri',
+                'cabang' => 'Kab. Bandung',
+                'an' => 'Bam',
+                'norek' => '735327357234',
             ],
         ]);
     }

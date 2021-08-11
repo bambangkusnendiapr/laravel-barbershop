@@ -19,11 +19,14 @@ class CreateOrdersTable extends Migration
             $table->integer('customer');
             $table->integer('staff');
             $table->foreignId('location_id');
-            $table->date('date');
+            $table->foreignId('payment_id');
+            $table->dateTime('date');
             $table->integer('net');
             $table->integer('tax')->nullable();
             $table->integer('gross');
-            $table->enum('lunas', ['Lunas', 'Belum Lunas'])->default('Belum Lunas');
+            $table->enum('lunas', ['Order', 'Payment', 'Approved'])->default('Order');
+            $table->text('note')->nullable();
+            $table->string('images')->nullable();
             $table->timestamps();
         });
     }
