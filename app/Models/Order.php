@@ -19,7 +19,7 @@ class Order extends Model
 
     public function service()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class)->withPivot('qty')->withPivot('total');
     }
 
     public function client()

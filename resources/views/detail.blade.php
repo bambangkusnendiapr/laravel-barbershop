@@ -71,15 +71,15 @@
                 </tr>
                 <tr>
                   <th>Net Total</th>
-                  <td>{{ $total }}</td>
+                  <td>{{ $total }} K</td>
                 </tr>
                 <tr>
                   <th>Tax</th>
                   <td>0.0</td>
                 </tr>
                 <tr>
-                  <th>Gross</th>
-                  <td>{{ $total }}</td>
+                  <th>Gross Total</th>
+                  <td>{{ $total }} K</td>
                 </tr>
             </table>
 

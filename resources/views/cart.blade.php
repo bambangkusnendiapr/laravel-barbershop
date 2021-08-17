@@ -40,9 +40,9 @@
                   @php $total += $details['price'] * $details['quantity'] @endphp
                   <tr>
                     <td>{{ $details['name'] }}</td>
-                    <td>{{ $details['price'] }}</td>
+                    <td>{{ $details['price'] }} K</td>
                     <td><input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" /></td>
-                    <td>{{ $details['price'] * $details['quantity'] }}</td>
+                    <td>{{ $details['price'] * $details['quantity'] }} K</td>
                     <td>
                       <button class="btn btn-info btn-sm update-cart d-inline" data-id="{{ $id }}"><i class="bi bi-arrow-clockwise"></i></button>
                       <a href="{{ route('deleteService', $id) }}" class="btn btn-sm btn-danger d-inline"><i class="bi bi-trash"></i></a>

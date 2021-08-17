@@ -6,6 +6,20 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
 
+      @if($order->lunas == 'Order')
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Silahkan lakukan transfer pembayaran dan upload pukti pembayarannya di bawah ini!
+        </div>
+      @elseif($order->lunas == 'Payment')
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          Terima kasih! pembayaran telah selesai.
+        </div>
+      @else
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          Terima kasih! silahkan pesan dan datang kembali.
+        </div>
+      @endif
+
       <div class="card">
         <form action="{{ route('uploadBukti', $order->id) }}" method="post" enctype="multipart/form-data">
           @method('PUT')
@@ -33,10 +47,12 @@
                 <th>SERVICE</th>
                 <th>DURATION</th>
               </tr>
+                @foreach($order->service as $service)
                   <tr>
-                    <td>aa</td>
-                    <td>bb</td>
+                    <td>{{ $service->name }}</td>
+                    <td>{{ $service->duration }} {{ $service->time }}</td>
                   </tr>
+                @endforeach
               <tr>
                 <th>Barber</th>
                 <td>{{ $order->employee->first_name }}</td>
@@ -51,7 +67,7 @@
               </tr>
               <tr>
                 <th>Net Total</th>
-                <td>{{ $order->net }}</td>
+                <td>Rp. {{ $order->net }}.000,-</td>
               </tr>
               <tr>
                 <th>Tax</th>
@@ -59,7 +75,7 @@
               </tr>
               <tr>
                 <th>Gross</th>
-                <td>{{ $order->gross }}</td>
+                <td>Rp. {{ $order->gross }}.000,-</td>
               </tr>
               <tr>
                 <th>Transfer Bank</th>
@@ -73,7 +89,13 @@
                 <th>Atas Nama</th>
                 <td>{{ $order->payment->an }}</td>
               </tr>
+              <tr>
+                <th>Booking Note</th>
+                <td>{{ $order->note }}</td>
+              </tr>
           </table>
+
+          @if($order->lunas != 'Approved')
 
           <div class="form-group mt-5">
             @if($order->images)
@@ -90,6 +112,7 @@
           <div>
             <button type="submit" class="btn btn-primary w-100">Upload File</button>
           </div>
+          @endif
 
           </div>
         </form>

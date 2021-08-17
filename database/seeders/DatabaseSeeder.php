@@ -17,57 +17,63 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
         DB::table('locations')->insert([
-            ['name' => 'DEDAN KIMATHI, NYERI',],
-            ['name' => 'KAMAKWA, NYERI',],
-            ['name' => 'NYERI TOWN, NYERI',],
+            ['name' => 'PASTEUR, BANDUNG',],
+            ['name' => 'SUKAJADI, BANDUNG',],
+            ['name' => 'CICENDO, BANDUNG',],
         ]);
 
         DB::table('categories')->insert([
-            ['name' => 'HAIRCUTS',],
-            ['name' => 'FACIALS RETOUCH',],
-            ['name' => 'PEDICURE',],
+            ['name' => 'PAKET NORMAL',],
+            ['name' => 'PAKET MEMBERSHIP',],
+            ['name' => 'PAKET PERSONAL',],
         ]);
 
         DB::table('services')->insert([
             [
                 'category_id' => 1,
-                'name' => 'Gentelmen Cut',
+                'name' => 'FAST HAIRCUT',
                 'duration' => 1,
                 'time' => 'Hr',
-                'price' => 500,
+                'price' => 40,
+                'desc' => 'HAIRCUT, STYLING, HAIRTONIC/POMADE',
             ],
             [
                 'category_id' => 1,
-                'name' => 'Colour Shading',
+                'name' => 'BASIC HAIRCUT',
                 'duration' => 20,
                 'time' => 'mins',
-                'price' => 200,
+                'price' => 50,
+                'desc' => 'HAIRCUT, WASHING, MASSAGE',
             ],[
                 'category_id' => 1,
-                'name' => 'Beard',
+                'name' => 'SIGNATURE HAIRCUT',
                 'duration' => 30,
                 'time' => 'mins',
-                'price' => 400,
+                'price' => 70,
+                'desc' => 'HAIRCUT, WASHING, MASSAGE',
             ],
             [
                 'category_id' => 2,
-                'name' => 'Service 1',
+                'name' => 'FATHER & SON',
                 'duration' => 1,
                 'time' => 'Hr',
-                'price' => 500,
+                'price' => 80,
+                'desc' => 'POTONG RAMBUT, KERAMAS, MASSAGE',
             ],
             [
                 'category_id' => 2,
-                'name' => 'Service 2',
+                'name' => 'STUDENT SERVICE',
                 'duration' => 20,
                 'time' => 'mins',
-                'price' => 200,
+                'price' => 35,
+                'desc' => null,
             ],[
                 'category_id' => 3,
-                'name' => 'Service 3',
+                'name' => 'CUKURAN DI RUMAH',
                 'duration' => 30,
                 'time' => 'mins',
-                'price' => 400,
+                'price' => 60,
+                'desc' => null,
             ],
         ]);
 

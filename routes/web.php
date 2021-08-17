@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +45,45 @@ Route::put('/upload-bukti/{id}', [FrontController::class, 'uploadBukti'])->name(
 Route::get('/unset-cart', [FrontController::class, 'unsetCart'])->name('unsetCart');
 
 Auth::routes();
+
+// Route::get('home', 'HomeController@index')->name('home');
+Route::get('/home', function() {
+  return redirect()->route('dashboard');
+});
+
+Route::get('/password/email', function() {
+  return redirect()->route('dashboard');
+});
+
+Route::get('/password/reset', function() {
+  return redirect()->route('dashboard');
+});
+Route::get('/register', function() {
+  return redirect()->route('dashboard');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadmin|owner|staff']], function() {
+  
+      //Dashboard
+      Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  
+      Route::resources([
+        'location' => LocationController::class,
+        'service' => ServiceController::class,
+        'category' => CategoryController::class,
+        'payment' => PaymentController::class,
+        'order' => OrderController::class,
+        'staff' => StaffController::class,
+      ]);
+
+      Route::get('order/approve/{id}', [OrderController::class, 'approve'])->name('order.approve');
+
+      Route::post('add-service', [OrderController::class, 'add_service'])->name('add_service');
+      Route::delete('hapus-service/{id}', [OrderController::class, 'hapus_service'])->name('service.hapus');
+      Route::put('update-service/{id}', [OrderController::class, 'update_service'])->name('update_service');
+      
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home', [HomeController::class, 'addOrder'])->name('add.order');

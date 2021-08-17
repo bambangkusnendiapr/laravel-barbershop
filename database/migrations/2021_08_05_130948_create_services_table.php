@@ -20,6 +20,7 @@ class CreateServicesTable extends Migration
             $table->integer('duration');
             $table->enum('time', ['Hr', 'mins']);
             $table->integer('price');
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

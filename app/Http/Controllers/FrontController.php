@@ -117,6 +117,11 @@ class FrontController extends Controller
 
     public function cart()
     {
+        $cart = session()->get('cart');
+        $cart_location = session()->get('cart_location');
+        if(!$cart) {
+            return redirect()->route('locationToService', $cart_location['lokasi']['id']);
+        }
         return view('cart', [
             'categories' => Category::all(),
         ]);
@@ -135,6 +140,7 @@ class FrontController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
         if($request->id and $request->quantity)
         {
             $cart = session()->get('cart');
@@ -238,6 +244,11 @@ class FrontController extends Controller
 
     public function detail()
     {
+        $cart = session()->get('cart');
+        $cart_location = session()->get('cart_location');
+        if(!$cart) {
+            return redirect()->route('locationToService', $cart_location['lokasi']['id']);
+        }
         return view('detail', [
             'payments' => Payment::all(),
         ]);
@@ -257,23 +268,42 @@ class FrontController extends Controller
 
         // dd($cart);
 
-        $user = User::create([
-            'location_id' => 1,
-            'first_name' => $cart_customer['first'],
-            'last_name' => $cart_customer['last'],
-            'email' => $cart_customer['email'],
-            'hp' => $cart_customer['phone'],
-            'address' => $cart_customer['address'],
-            'password' => bcrypt('password'),
-        ]);
+        $customer = User::where('email', $cart_customer['email'])->first();
 
-        $user->attachRole('customer');
+        if($customer) {
+            //jika customer sudah pesan dan belum bayar
+            $order_customer = Order::where('customer', $customer->id)->first();
+            if($order_customer && $order_customer->lunas == 'Order') {
+                $order_customer->delete();
+            }
+        }
+
+        //jika customer ada
+        if($customer) {
+            $customer->order++;
+            $user_id = $customer->id;
+            $customer->save();                  
+        }else {
+            $user = User::create([
+                'location_id' => 1,
+                'first_name' => $cart_customer['first'],
+                'last_name' => $cart_customer['last'],
+                'email' => $cart_customer['email'],
+                'hp' => $cart_customer['phone'],
+                'address' => $cart_customer['address'],
+                'password' => bcrypt('password'),
+            ]);
+
+            $user->attachRole('customer');
+
+            $user_id = $user->id;
+        }
 
         $kode = 'KODE'.time();
 
         $order = Order::create([
             'code' => $kode,
-            'customer' => $user->id,
+            'customer' => $user_id,
             'staff' => $cart_staff['staf_id'],
             'location_id' => $cart_location['lokasi']['id'],
             'payment_id' => $request->payment,
@@ -302,8 +332,12 @@ class FrontController extends Controller
     
     public function detail_payment($kode)
     {
+        $order = Order::where('code', $kode)->first();
+        if(!$order) {
+            return redirect()->route('front');
+        }
         return view('detail_payment', [
-            'order' => Order::where('code', $kode)->first(),
+            'order' => $order,
         ]);
     }
 

@@ -26,9 +26,9 @@
           <p>ada cart customer</p>
         @endif -->
 
-        <div>
+        <!-- <div>
           <a href="{{ route('unsetCart') }}" class="btn btn-danger">Unset All Cart</a>
-        </div>
+        </div> -->
 
       </div>
     </div>
