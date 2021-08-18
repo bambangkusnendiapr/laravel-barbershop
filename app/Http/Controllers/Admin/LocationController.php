@@ -40,6 +40,7 @@ class LocationController extends Controller
     {
         $location = new Location;
         $location->name = $request->location;
+        $location->color = $request->color;
         $location->save();
 
         return redirect()->route('location.index')->with(['success' => 'Location Successfully Created']);

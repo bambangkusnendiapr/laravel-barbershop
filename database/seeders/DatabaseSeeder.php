@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
         DB::table('locations')->insert([
-            ['name' => 'PASTEUR, BANDUNG',],
-            ['name' => 'SUKAJADI, BANDUNG',],
-            ['name' => 'CICENDO, BANDUNG',],
+            ['name' => 'PASTEUR, BANDUNG', 'color' => '#f56954'],
+            ['name' => 'SUKAJADI, BANDUNG', 'color' => '#00a65a'],
+            ['name' => 'CICENDO, BANDUNG', 'color' => '#f39c12'],
         ]);
 
         DB::table('categories')->insert([

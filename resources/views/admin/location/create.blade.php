@@ -39,9 +39,10 @@
                 <form action="{{ route('location.store') }}" method="post">
                   @csrf
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Location Name</label>
-                    <input name="location" type="text" value="{{ old('location') }}" required class="form-control" id="exampleInputEmail1" placeholder="Enter Location Name">
+                    <label for="lokasi">Location Name</label>
+                    <input name="location" type="text" value="{{ old('location') }}" required class="form-control" id="lokasi" placeholder="Enter Location Name">
                   </div>
+                  <input type="hidden" name="color" class="form-control" id="warna" value="">
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
                   </div>
@@ -64,5 +65,18 @@
 @endpush
 
 @push('script')
+<script>
+  $(function() {
+    $("#lokasi").keyup(function() {
+      var symbols, color;
+      symbols = "0123456789ABCDEF";
 
+      color = "#"
+      for (var i = 0; i < 6; i++) {
+        color = color + symbols[Math.floor(Math.random() * 16)];
+      }
+      $("#warna").val(color);
+    });
+  });
+</script>
 @endpush
