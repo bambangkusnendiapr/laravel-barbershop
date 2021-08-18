@@ -59,7 +59,7 @@
               </tr>
               <tr>
                 <th>Date</th>
-                <td>{{ $order->date->format('d F Y H:m') }}</td>
+                <td>{{ $order->date->format('d F Y H:i') }}</td>
               </tr>
               <tr>
                 <th>Place</th>

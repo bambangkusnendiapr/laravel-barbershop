@@ -42,6 +42,8 @@ Route::post('/payment', [FrontController::class, 'addPayment'])->name('addPaymen
 Route::get('/detail-payment/{kode}', [FrontController::class, 'detail_payment'])->name('detail_payment');
 Route::put('/upload-bukti/{id}', [FrontController::class, 'uploadBukti'])->name('uploadBukti');
 
+Route::get('/search-code', [FrontController::class, 'search_code'])->name('search.code');
+
 Route::get('/unset-cart', [FrontController::class, 'unsetCart'])->name('unsetCart');
 
 Auth::routes();

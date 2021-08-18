@@ -6,6 +6,11 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
 
+      <!-- <p>{{  now()->format('d F Y H:i') }}</p>
+      <p>{{  now() }}</p>
+      <p> tambah 1 jam {{  now()->addHour(5) }}</p>
+      <p> tambah 1 jam {{  now()->addMinutes(5) }}</p> -->
+
         @foreach($locations as $location)
           <div class="mb-4">
               <a href="{{ route('locationToService', $location->id) }}" class="btn btn-dark btn-lg w-100">{{ $location->name }}</a>

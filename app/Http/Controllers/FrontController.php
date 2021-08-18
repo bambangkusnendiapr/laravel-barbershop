@@ -16,6 +16,21 @@ class FrontController extends Controller
 {
     public function index()
     {
+        // $order = Order::find(1);
+        // if($order->date->addHour(5) < now()) {
+        //     return "hapus " . $order->date . " " . $order->date->addHour(5) . " " . now();
+        // } else {
+        //     return "masih " . $order->date . " " . $order->date->addHour(5) . " " . now();
+        // }
+        // echo now()->format('d F Y H:i');
+        // echo "<br>";
+        // echo now();
+        // echo "<br>";
+        // echo now()->addHour(5);
+        // echo "<br>";
+        // echo now()->addMinutes(5);
+        // die();
+
         return view('front', [
             'locations' => Location::all(),
         ]);
@@ -379,6 +394,24 @@ class FrontController extends Controller
         $this->_unsetCart();
 
         return redirect()->back();
+    }
+
+    public function search_code()
+    {
+        $search = false;
+        if(request('search')) {
+            $order = Order::where('code', request('search'))->first();
+            if($order) {
+                return view('detail_payment', [
+                    'order' => $order,
+                ]);
+            }
+            $search = true;
+        }
+        
+        return view('search_code', [
+            'search' => $search,
+        ]);
     }
 
     private function _unsetCart()
