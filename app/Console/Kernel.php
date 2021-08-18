@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
             //ambil order yang status order
             $orders = Order::where('lunas', 'Order')->get();
             foreach($orders as $order) {
-                if($order->date->addMinutes(5) < now()) {
+                if($order->date->addHour(24) < now()) {
                     $order->delete();
                     // DB::table('categories')->insert([
                     //     'name' => "delete order",
