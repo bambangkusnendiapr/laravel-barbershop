@@ -46,6 +46,7 @@
                   <thead>
                   <tr class="text-center">
                     <th>#</th>
+                    <th>Bukti Transfer</th>
                     <th>Code</th>
                     <th>Customer</th>
                     <th>Staff</th>
@@ -64,6 +65,15 @@
                     @foreach($orders as $order)
                   <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>
+                      @if($order->images)
+                        <a href="#" data-toggle="modal" data-target="#modal-default{{ $order->id }}">
+                          <img id="img" src="{{ url('img/bukti_transfer/')}}/{{ $order->images }}" width="50px"/>
+                        </a>
+                      @else
+                      Belum Transfer
+                      @endif
+                    </td>
                     <td>{{ $order->code }}</td>
                     <td>{{ $order->client->first_name }}</td>
                     <td>{{ $order->employee->first_name }}</td>
@@ -104,6 +114,32 @@
   </section>
   <!-- /.content -->
 </div>
+
+@foreach($orders as $order)
+<div class="modal fade" id="modal-default{{ $order->id }}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Bukti Transfer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center">
+          <img id="img" src="{{ url('img/bukti_transfer/')}}/{{ $order->images }}" width="250px"/>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+@endforeach
 
 @endsection
 

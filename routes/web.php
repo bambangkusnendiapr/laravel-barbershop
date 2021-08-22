@@ -64,25 +64,34 @@ Route::get('/register', function() {
   return redirect()->route('dashboard');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:superadmin|owner|staff']], function() {
-  
-      //Dashboard
-      Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-  
-      Route::resources([
-        'location' => LocationController::class,
-        'service' => ServiceController::class,
-        'category' => CategoryController::class,
-        'payment' => PaymentController::class,
-        'order' => OrderController::class,
-        'staff' => StaffController::class,
-      ]);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 
-      Route::get('order/approve/{id}', [OrderController::class, 'approve'])->name('order.approve');
+  Route::middleware(['role:superadmin|owner|staff'])->group(function () {
+    //staff
+    Route::resource('order', OrderController::class);
 
-      Route::post('add-service', [OrderController::class, 'add_service'])->name('add_service');
-      Route::delete('hapus-service/{id}', [OrderController::class, 'hapus_service'])->name('service.hapus');
-      Route::put('update-service/{id}', [OrderController::class, 'update_service'])->name('update_service');
+    Route::get('order/approve/{id}', [OrderController::class, 'approve'])->name('order.approve');
+  
+    Route::post('add-service', [OrderController::class, 'add_service'])->name('add_service');
+    Route::delete('hapus-service/{id}', [OrderController::class, 'hapus_service'])->name('service.hapus');
+    Route::put('update-service/{id}', [OrderController::class, 'update_service'])->name('update_service');
+  });
+
+  Route::middleware(['role:superadmin|owner'])->group(function () {
+    //Dashboard
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  
+    Route::resources([
+      'location' => LocationController::class,
+      'service' => ServiceController::class,
+      'category' => CategoryController::class,
+      'payment' => PaymentController::class,
+      'staff' => StaffController::class,
+    ]);
+  
+  });
+
+  
       
 });
 

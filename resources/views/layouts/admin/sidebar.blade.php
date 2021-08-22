@@ -10,9 +10,9 @@
   <div class="sidebar">
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
+      <!-- <div class="image">
         <img src="{{ asset('img/bukti_transfer/bukti.jpg') }}" class="img-circle elevation-2" alt="User Image">
-      </div>
+      </div> -->
       <div class="info">
         <a href="#" class="d-block">{{ Auth::user()->first_name }}</a>
       </div>
@@ -23,6 +23,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
+        @role('superadmin|owner')
         <li class="nav-item">
           <a href="{{ route('dashboard') }}" class="nav-link @yield('dashboard')">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -31,6 +32,7 @@
             </p>
           </a>
         </li>
+        @endrole
         <li class="nav-item">
           <a href="{{ route('order.index') }}" class="nav-link @yield('order')">
             <i class="nav-icon fas fa-chair"></i>
@@ -39,6 +41,7 @@
             </p>
           </a>
         </li>
+        @role('superadmin|owner')
         <li class="nav-item @yield('master_data')">
           <a href="#" class="nav-link @yield('location')">
             <i class="nav-icon fas fa-box-open"></i>
@@ -82,6 +85,7 @@
             </p>
           </a>
         </li>
+        @endrole
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt"></i>
