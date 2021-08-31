@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
       'payment' => PaymentController::class,
       'staff' => StaffController::class,
     ]);
+
+    //Laporan
+    //pelayanan
+    Route::post('laporan-pelayanan', [LaporanController::class, 'pelayanan'])->name('laporan.pelayanan');
+
+    //staff
+    Route::post('laporan-staff', [LaporanController::class, 'staff'])->name('laporan.staff');
   
   });
 

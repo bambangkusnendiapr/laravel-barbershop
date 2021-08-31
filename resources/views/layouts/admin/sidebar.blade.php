@@ -85,6 +85,29 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Laporan
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-default">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pelayanan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-staff">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Staff</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         @endrole
         <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -103,3 +126,73 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+
+<div class="modal fade" id="modal-default">
+  <form target="_blank" action="{{ route('laporan.pelayanan') }}" method="post">
+  @csrf
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h4 class="modal-title">Cetak Laporan Pelayanan</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Dari Tangal</label>
+              <input type="date" required name="dari" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label>Sampai Tangal</label>
+              <input type="date" required name="sampai" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Cetak</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+  <!-- /.modal-dialog -->
+  </form>
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-staff">
+  <form target="_blank" action="{{ route('laporan.staff') }}" method="post">
+  @csrf
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h4 class="modal-title">Cetak Laporan Staff</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Dari Tangal</label>
+              <input type="date" required name="dari" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label>Sampai Tangal</label>
+              <input type="date" required name="sampai" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Cetak</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+  </form>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

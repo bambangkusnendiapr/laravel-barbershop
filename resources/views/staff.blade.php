@@ -6,6 +6,13 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
 
+        @if ($message = Session::get('warning'))
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+
         <a href="/cart" class="btn btn-dark mb-3"><i class="bi bi-arrow-left"></i> Back</a>
 
         <div class="card">

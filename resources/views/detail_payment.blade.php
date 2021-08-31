@@ -122,6 +122,8 @@
     </div>
   </div>
 
+  <a class='fixed-whatsapp' href='https://api.whatsapp.com/send?phone=62819142096565' rel='nofollow noopener' target='_blank' title='Konfirmasi Admin Barber' />
+
 @endsection
 
 @push('script')

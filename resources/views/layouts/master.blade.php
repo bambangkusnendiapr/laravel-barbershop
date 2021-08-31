@@ -11,6 +11,9 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+    <!-- tombol whatsapp -->
+    <link rel="stylesheet" href="{{ asset('wa.css') }}">
+
     <title>Barbershop</title>
   </head>
   <body>

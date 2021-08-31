@@ -179,6 +179,18 @@ class FrontController extends Controller
 
     public function addStaff(Request $request)
     {
+        $orders = Order::where('lunas', '!=', 'Approved')->get();
+        $i = 0;
+        if($request->date) {
+            foreach($orders as $order) {
+                $cek_date = new \DateTime($request->date);
+                if($cek_date == $order->date && $request->staff == $order->staff) {
+                    // dd($request->date);
+                    return redirect()->back()->with(['warning' => 'Mohon Maaf! staff dan waktu yang anda pilih telah dibooking orang lain, silahkan pilih staff / waktu yang berbeda.']);
+                }
+                $i++;
+            }
+        }
         // $tanggal = new \DateTime($request->date);
         // echo $tanggal->format('Y-m-d');
         $namaStaff = User::find($request->staff);

@@ -11,7 +11,7 @@
       <div class="card">
         <form action="{{ route('addCustomer') }}" method="post">
           @csrf
-          <div class="card-header bg-dark text-light">Staff and DateTime</div>
+          <div class="card-header bg-dark text-light">Data Customer</div>
           <div class="card-body">
             @if(session('cart_location'))
               <div>
@@ -29,7 +29,7 @@
 
             @if(session('cart_staff'))
               <div>
-                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y H:m') }}</div>
+                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y H:i') }}</div>
                 <a href="/staff" class="btn btn-dark mb-3 btn-sm d-inline">Change Staff or Date Time</a>
               </div>
             @endif
