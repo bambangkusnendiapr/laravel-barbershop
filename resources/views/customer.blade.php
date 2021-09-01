@@ -29,7 +29,7 @@
 
             @if(session('cart_staff'))
               <div>
-                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y H:i') }}</div>
+                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
                 <a href="/staff" class="btn btn-dark mb-3 btn-sm d-inline">Change Staff or Date Time</a>
               </div>
             @endif

@@ -20,7 +20,8 @@ class CreateOrdersTable extends Migration
             $table->integer('staff');
             $table->foreignId('location_id');
             $table->foreignId('payment_id');
-            $table->dateTime('date');
+            $table->date('date');
+            $table->foreignId('time_id');
             $table->integer('net');
             $table->integer('tax')->nullable();
             $table->integer('gross');

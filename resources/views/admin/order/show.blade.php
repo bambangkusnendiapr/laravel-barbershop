@@ -79,7 +79,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-4">
-                    Date : <strong>{{ $order->date->format('d F Y H:m') }}</strong>
+                    Date and Time: <strong>{{ $order->date->format('d F Y') }} {{ $order->time->jam }}</strong>
                   </div>
                   <div class="col-md-4">
                     Note : <strong>{{ $order->note }}</strong>

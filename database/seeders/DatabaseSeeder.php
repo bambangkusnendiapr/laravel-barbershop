@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             ['name' => 'CICENDO, BANDUNG', 'color' => '#f39c12'],
         ]);
 
+        DB::table('times')->insert([
+            ['jam' => '08.00'],
+            ['jam' => '08.30'],
+            ['jam' => '09.00'],
+        ]);
+
         DB::table('categories')->insert([
             ['name' => 'PAKET NORMAL',],
             ['name' => 'PAKET MEMBERSHIP',],

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Service;
 use App\Models\Payment;
 use App\Models\Order;
+use App\Models\Time;
 use Illuminate\Support\Facades\DB;
 use File;
 
@@ -174,26 +175,28 @@ class FrontController extends Controller
         // return $staf;
         return view('staff', [
             'staffs' => User::whereRoleIs('staff')->where('location_id', $cart_location['lokasi']['id'])->get(),
+            'times' => Time::orderBy('jam','asc')->get(),
         ]);
     }
 
     public function addStaff(Request $request)
     {
         $orders = Order::where('lunas', '!=', 'Approved')->get();
-        $i = 0;
         if($request->date) {
+
             foreach($orders as $order) {
                 $cek_date = new \DateTime($request->date);
-                if($cek_date == $order->date && $request->staff == $order->staff) {
+                if($cek_date == $order->date && $request->staff == $order->staff && $request->time == $order->time_id) {
                     // dd($request->date);
                     return redirect()->back()->with(['warning' => 'Mohon Maaf! staff dan waktu yang anda pilih telah dibooking orang lain, silahkan pilih staff / waktu yang berbeda.']);
                 }
-                $i++;
             }
         }
         // $tanggal = new \DateTime($request->date);
         // echo $tanggal->format('Y-m-d');
         $namaStaff = User::find($request->staff);
+        $time_id = Time::find($request->time);
+        $jam = $time_id->jam;
         // dd($namaStaff);
         $cart_staff = session()->get('cart_staff');
 
@@ -204,6 +207,8 @@ class FrontController extends Controller
                     'name' => $namaStaff->first_name,
                     'date_time' => new \DateTime($request->date),
                     'date' => $request->date,
+                    'time' => $request->time,
+                    'jam' => $jam,
             ];
             session()->put('cart_staff', $cart_staff);
         } else {
@@ -218,6 +223,8 @@ class FrontController extends Controller
                 'name' => $namaStaff->first_name,
                 'date_time' => new \DateTime($request->date),
                 'date' => $request->date,
+                'time' => $request->time,
+                'jam' => $jam,
             ];
             session()->put('cart_staff', $cart_staff);
         }
@@ -335,6 +342,7 @@ class FrontController extends Controller
             'location_id' => $cart_location['lokasi']['id'],
             'payment_id' => $request->payment,
             'date' => $cart_staff['date_time'],
+            'time_id' => $cart_staff['time'],
             'net' => $total,
             'tax' => 0,
             'gross' => $total,

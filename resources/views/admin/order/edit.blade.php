@@ -117,12 +117,23 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Select Date Time</label>
+                    <label class="col-sm-2 col-form-label">Select Date</label>
                     <div class="col-sm-7">
-                    <label class="col-form-label">{{ $order->date->format('d F Y H:m') }}</label> (Kosongkan jika tidak mengganti tanggal dan waktu)
+                    <label class="col-form-label">{{ $order->date->format('d F Y') }}</label> (Kosongkan jika tidak mengganti tanggal)
                     </div>
                     <div class="col-sm-3">
-                      <input type="datetime-local" class="form-control" name="date">
+                      <input type="date" class="form-control" name="date" value="{{ $order->date }}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Select Time</label>
+                    <div class="col-sm-10">
+                      <select required name="time" class="form-control">
+                        <option selected disabled value="">Select Time</option>
+                        @foreach($times as $time)
+                          <option value="{{ $time->id }}" {{ $order->time_id == $time->id ? 'selected':'' }}>{{ $time->jam }}</option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">

@@ -10,6 +10,7 @@ use App\Models\Location;
 use App\Models\Payment;
 use App\Models\Category;
 use App\Models\Service;
+use App\Models\Time;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -45,6 +46,7 @@ class OrderController extends Controller
             'locations' => Location::all(),
             'payments' => Payment::all(),
             'categories' => Category::all(),
+            'times' => Time::orderBy('jam','asc')->get(),
         ]);
     }
 
@@ -95,6 +97,7 @@ class OrderController extends Controller
             'location_id' => $request->location,
             'payment_id' => $request->payment,
             'date' => $request->date,
+            'time_id' => $request->time,
             'net' => $total,
             'tax' => 0,
             'gross' => $total,
@@ -173,6 +176,7 @@ class OrderController extends Controller
             'locations' => Location::all(),
             'payments' => Payment::all(),
             'categories' => Category::all(),
+            'times' => Time::orderBy('jam','asc')->get(),
             'tanggal' => new \DateTime($order->date),
         ]);
     }
@@ -212,6 +216,7 @@ class OrderController extends Controller
         $order->staff = $request->staff;
         $order->location_id = $request->location;
         $order->payment_id = $request->payment;
+        $order->time_id = $request->time;
         $order->note = $request->note;
 
         $order->save();

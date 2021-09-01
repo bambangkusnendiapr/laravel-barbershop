@@ -187,9 +187,20 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Select Date Time</label>
+                    <label class="col-sm-2 col-form-label">Select Date</label>
                     <div class="col-sm-10">
-                      <input type="datetime-local" required class="form-control" name="date">
+                      <input type="date" required class="form-control" name="date">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Select Time</label>
+                    <div class="col-sm-10">
+                      <select required name="time" class="form-control">
+                        <option selected disabled value="">Select Time</option>
+                        @foreach($times as $time)
+                          <option value="{{ $time->id }}">{{ $time->jam }}</option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\TimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
       'category' => CategoryController::class,
       'payment' => PaymentController::class,
       'staff' => StaffController::class,
+      'time' => TimeController::class,
     ]);
 
     //Laporan

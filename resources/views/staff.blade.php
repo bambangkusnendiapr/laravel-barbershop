@@ -50,12 +50,25 @@
             </select>
            </div>
            <div class="mb-3 mt-3">
-              <label class="form-label">Select Date and Time</label>
-              <input name="date" required type="datetime-local" class="form-control" min="2018-06-07T08:00" max="2022-06-14T22:00"
+              <label class="form-label">Select Date</label>
+              <input name="date" required type="date" class="form-control" min="2018-06-07T08:00" max="2022-06-14T22:00"
               @if(session('cart_staff'))
                 value="{{ session('cart_staff')['date'] }}""
               @endif
               >
+            </div>
+           <div class="mb-3 mt-3">
+              <label class="form-label">Select Time</label>
+              <select name="time" required class="form-select" aria-label="Default select example">
+                <option selected disabled value="">Select Time</option>
+                @foreach($times as $time)
+                  <option value="{{ $time->id }}"
+                  @if(session('cart_staff'))
+                    {{ session('cart_staff')['time'] == $time->id ? 'selected':'' }}
+                  @endif
+                    >{{ $time->jam }}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <div class="card-footer bg-dark">

@@ -30,7 +30,7 @@
 
             @if(session('cart_staff'))
               <div>
-                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y H:m') }}</div>
+                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
                 <a href="/staff" class="btn btn-dark mb-3 btn-sm d-inline">Change Staff or Date Time</a>
               </div>
             @endif
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                   <th>Date</th>
-                  <td>{{ $cart_staff['date_time']->format('d F Y H:m') }}</td>
+                  <td>{{ $cart_staff['date_time']->format('d F Y') }} {{ $cart_staff['jam'] }}</td>
                 </tr>
                 <tr>
                   <th>Place</th>

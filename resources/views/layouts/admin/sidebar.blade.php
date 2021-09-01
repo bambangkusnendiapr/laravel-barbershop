@@ -75,6 +75,12 @@
                 <p>Payment</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('time.index') }}" class="nav-link @yield('time')">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Time</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item">
