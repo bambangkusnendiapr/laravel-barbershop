@@ -7,36 +7,35 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
-    <!-- tombol whatsapp -->
-    <link rel="stylesheet" href="{{ asset('wa.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <title>Barbershop</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="/">Barbershop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('search.code') }}">Search Code</a>
-            </li>
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light mb-5 ">
+      <div class="container flex justify-content-around align-items-center align-self-center">
+        <a class="navbar-brand align-items-center align-self-center" href="/"><img src="{{ asset('img/logo.jpeg') }}" width="85" alt=""><span class="logo"> <span class="logo-warna">Niel</span> Barbershop</span></a>
+        <a class="btn btn-info" href="{{ route('search.code') }}"><i class="fas fa-search"></i> Search Code</a>
       </div>
       </nav>
-
-    @yield('content')
+    
+    <h2 class="text-center mb-5 ">Tentukan cabang terdekat Anda!</h2>
+    <div class="main">
+      @yield('content')
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

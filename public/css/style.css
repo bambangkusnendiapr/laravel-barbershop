@@ -1,0 +1,36 @@
+html, body {
+    background-color: rgb(187, 187, 187);
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+}
+a .logo {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 35px;
+    color: #101312;
+}
+
+a .logo-warna {
+    color: #9b1b19;
+}
+
+.main {
+    border: 2px solid rgb(104, 96, 96);
+    background-color: rgb(231, 231, 231);
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgb(61, 61, 61);
+    width: 95%;
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+.btn-info {
+    background-color: rgb(72, 73, 73)!important;
+    color: aliceblue;
+    text-align: center;
+}
+
+@media only screen and (max-width: 780px) {
+    .btn-info {
+        margin: 0 auto;
+    }
+  }

@@ -45,7 +45,7 @@
                                   {{ $service->duration }} {{ $service->time }}
                               </span> |
                               <span class="form-check-label text-primary" for="flexCheckDefault">
-                                  <strong>{{ $service->price }} K</strong>
+                                  <strong>{{ $service->price }}K</strong>
                               </span>
                             </td>
                             <td><a href="{{ route('addToCart', $service->id) }}" class="btn btn-secondary">Add</a></td>
