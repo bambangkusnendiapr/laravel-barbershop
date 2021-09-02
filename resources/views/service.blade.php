@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@if(session('cart_location'))
+  @php $judul = session('cart_location')['lokasi']['name']; @endphp
+  @section('judul', 'Lokasi: '.$judul)
+@endif
+
 @section('content')
 
   <div class="container">
@@ -7,6 +12,7 @@
       <div class="col-md-8">
 
         <a href="/" class="btn btn-dark mb-3"><i class="bi bi-arrow-left"></i> Back</a>
+        <a href="/" class="btn btn-primary mb-3">Change Location</a>
 
       @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,12 +25,6 @@
         <form action="{{ route('front') }}">
           <div class="card-header bg-dark text-light">Services</div>
           <div class="card-body">
-            @if(session('cart_location'))
-              <div class="d-inline">Location : {{ session('cart_location')['lokasi']['name'] }}</div>
-              <a href="/" class="btn btn-dark mb-3 btn-sm d-inline">Change Location</a>
-            @endif
-
-            <br><br>
      
             @foreach($categories as $category)
               <div class="accordion" id="accordionExample">

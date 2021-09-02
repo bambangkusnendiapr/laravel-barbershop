@@ -136,6 +136,9 @@ class FrontController extends Controller
         $cart = session()->get('cart');
         $cart_location = session()->get('cart_location');
         if(!$cart) {
+            if(!$cart_location) {
+                return redirect()->route('front');
+            }
             return redirect()->route('locationToService', $cart_location['lokasi']['id']);
         }
         return view('cart', [
@@ -167,12 +170,20 @@ class FrontController extends Controller
 
     public function staff()
     {
+        $cart = session()->get('cart');
         $cart_location = session()->get('cart_location');
         // $cart_staff = session()->get('cart_staff');
         // dd($cart_staff['date_time']);
         // return $cart_location['lokasi']['id'];
         // $staf = User::whereRoleIs('staff')->where('location_id', $cart_location['lokasi']['id'])->get();
         // return $staf;
+        if(!$cart) {
+            if(!$cart_location) {
+                return redirect()->route('front');
+            }
+            return redirect()->route('locationToService', $cart_location['lokasi']['id']);
+        }
+
         return view('staff', [
             'staffs' => User::whereRoleIs('staff')->where('location_id', $cart_location['lokasi']['id'])->get(),
             'times' => Time::orderBy('jam','asc')->get(),
@@ -236,6 +247,15 @@ class FrontController extends Controller
 
     public function customer()
     {
+        $cart = session()->get('cart');
+        $cart_location = session()->get('cart_location');
+        if(!$cart) {
+            if(!$cart_location) {
+                return redirect()->route('front');
+            }
+            return redirect()->route('locationToService', $cart_location['lokasi']['id']);
+        }
+
         return view('customer');
     }
 
@@ -281,8 +301,12 @@ class FrontController extends Controller
         $cart = session()->get('cart');
         $cart_location = session()->get('cart_location');
         if(!$cart) {
+            if(!$cart_location) {
+                return redirect()->route('front');
+            }
             return redirect()->route('locationToService', $cart_location['lokasi']['id']);
         }
+        
         return view('detail', [
             'payments' => Payment::all(),
         ]);
@@ -344,7 +368,6 @@ class FrontController extends Controller
             'date' => $cart_staff['date_time'],
             'time_id' => $cart_staff['time'],
             'net' => $total,
-            'tax' => 0,
             'gross' => $total,
             'note' => $cart_customer['note'],
         ]);
@@ -373,6 +396,7 @@ class FrontController extends Controller
         }
         return view('detail_payment', [
             'order' => $order,
+            'wa' => User::find(1),
         ]);
     }
 
@@ -424,6 +448,7 @@ class FrontController extends Controller
             if($order) {
                 return view('detail_payment', [
                     'order' => $order,
+                    'wa' => User::find(1),
                 ]);
             }
             $search = true;

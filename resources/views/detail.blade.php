@@ -1,12 +1,21 @@
 @extends('layouts.master')
 
+@if(session('cart_location'))
+  @php $judul = session('cart_location')['lokasi']['name']; @endphp
+  @section('judul', 'Lokasi: '.$judul)
+@endif
+
 @section('content')
 
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
 
-        <a href="/customer" class="btn btn-dark mb-3"><i class="bi bi-arrow-left"></i> Back</a>
+        <a href="/customer" class="btn btn-dark mb-3 btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
+        <a href="/" class="btn btn-primary mb-3 btn-sm">Change Location</a>
+        <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-success mb-3 btn-sm">Select Other Service</a>
+        <a href="/staff" class="btn btn-warning mb-3 btn-sm">Change Staff or Date Time</a>
+        <a href="/customer" class="btn btn-danger mb-3 btn-sm">Change Customer</a>
 
       <div class="card">
         <form action="{{ route('addPayment') }}" method="post">
@@ -14,24 +23,9 @@
           <div class="card-header bg-dark text-light">Booking Detail</div>
           <div class="card-body">
 
-            @if(session('cart_location'))
-              <div>
-                <div class="d-inline">Location : {{ session('cart_location')['lokasi']['name'] }}</div>
-                <a href="/" class="btn btn-dark mb-3 btn-sm d-inline">Change Location</a>
-              </div>
-            @endif
-
-            @if(session('cart'))
-              <div>
-                <div class="d-inline">{{ count((array) session('cart')) }} Services</div>
-                <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-dark mb-3 btn-sm d-inline">Select Other Service</a>
-              </div>
-            @endif
-
             @if(session('cart_staff'))
               <div>
                 <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
-                <a href="/staff" class="btn btn-dark mb-3 btn-sm d-inline">Change Staff or Date Time</a>
               </div>
             @endif
 

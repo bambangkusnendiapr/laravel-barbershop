@@ -23,7 +23,6 @@ class CreateOrdersTable extends Migration
             $table->date('date');
             $table->foreignId('time_id');
             $table->integer('net');
-            $table->integer('tax')->nullable();
             $table->integer('gross');
             $table->enum('lunas', ['Order', 'Payment', 'Approved'])->default('Order');
             $table->text('note')->nullable();

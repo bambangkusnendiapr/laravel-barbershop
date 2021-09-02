@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@if(session('cart_location'))
+  @php $judul = session('cart_location')['lokasi']['name']; @endphp
+  @section('judul', 'Lokasi: '.$judul)
+@endif
+
 @section('content')
 
   <div class="container">
@@ -7,21 +12,16 @@
       <div class="col-md-8">    
 
         <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-dark mb-3"><i class="bi bi-arrow-left"></i> Back</a>
+        <a href="/" class="btn btn-primary mb-3">Change Location</a>
+        <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-success mb-3">Select Other Service</a>
 
       <div class="card">
         <form action="{{ route('front') }}">
           <div class="card-header bg-dark text-light">Summery</div>
           <div class="card-body">
-          @if(session('cart_location'))
-            <div class="d-inline">Location : {{ session('cart_location')['lokasi']['name'] }}</div>
-            <a href="/" class="btn btn-dark mb-3 btn-sm d-inline">Change Location</a>
-          @endif
-
-            <br><br>
             <div>
               @if(session('cart'))
                 <div class="d-inline">{{ count((array) session('cart')) }} Services</div>
-                <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-dark mb-3 btn-sm d-inline">Select Other Service</a>
               @endif
             </div>
             <table class="table table-striped">

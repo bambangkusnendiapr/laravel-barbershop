@@ -11,8 +11,8 @@
           Silahkan lakukan transfer pembayaran dan upload pukti pembayarannya di bawah ini!
         </div>
       @elseif($order->lunas == 'Payment')
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          Terima kasih! pembayaran telah selesai.
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          Jika sudah upload bukti transfer silahkan tunggu persetujuan admin atau bisa langsung kontak admin pada tombol Whatsapp di bawah. 
         </div>
       @else
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -70,10 +70,6 @@
                 <td>Rp. {{ $order->net }}.000,-</td>
               </tr>
               <tr>
-                <th>Tax</th>
-                <td>0.0</td>
-              </tr>
-              <tr>
                 <th>Gross</th>
                 <td>Rp. {{ $order->gross }}.000,-</td>
               </tr>
@@ -122,7 +118,7 @@
     </div>
   </div>
 
-  <a class='fixed-whatsapp' href='https://api.whatsapp.com/send?phone=62819142096565' rel='nofollow noopener' target='_blank' title='Konfirmasi Admin Barber' />
+  <a class='fixed-whatsapp' href="http://wa.me/{{ $wa->hp }}" rel='nofollow noopener' target='_blank' title='Konfirmasi Admin Barber' />
 
 @endsection
 

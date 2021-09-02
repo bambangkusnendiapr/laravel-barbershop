@@ -54,7 +54,6 @@
                     <th>Payment</th>
                     <th>DateTime</th>
                     <th>Net</th>
-                    <th>Tax</th>
                     <th>Gross</th>
                     <th>Lunas</th>
                     <th>Note</th>
@@ -81,7 +80,6 @@
                     <td>{{ $order->payment->bank }} a.n {{ $order->payment->an }}, {{ $order->payment->norek }}</td>
                     <td>{{ $order->date->format('d F Y') }} {{ $order->time->jam }}</td>
                     <td>{{ $order->net }}</td>
-                    <td>{{ $order->tax }}</td>
                     <td>{{ $order->gross }}</td>
                     <td>{{ $order->lunas }}</td>
                     <td>{{ $order->note }}</td>

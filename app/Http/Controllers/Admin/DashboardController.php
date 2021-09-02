@@ -17,6 +17,7 @@ class DashboardController extends Controller
         if(Auth::user()->hasRole('staff')) {
             return redirect()->route('order.index');
         }
+
         return view('admin.dashboard.index', [
             'visitors' => User::all(),
             'staff' => User::whereRoleIs('staff')->get(),

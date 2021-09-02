@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Service;
 use App\Models\Time;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -28,8 +29,14 @@ class OrderController extends Controller
     {
         $this->unsetCart();
 
+        $orders = Order::orderBy('date', 'ASC')->get();
+
+        if(Auth::user()->hasRole('staff')) {
+            $orders = Order::orderBy('date', 'ASC')->where('staff', Auth::user()->id)->get();
+        }
+
         return view('admin.order.index', [
-            'orders' => Order::orderBy('date', 'ASC')->get(),
+            'orders' => $orders,
         ]);
     }
 
@@ -99,7 +106,6 @@ class OrderController extends Controller
             'date' => $request->date,
             'time_id' => $request->time,
             'net' => $total,
-            'tax' => 0,
             'gross' => $total,
             'note' => $request->note,
             'lunas' => 'Approved',

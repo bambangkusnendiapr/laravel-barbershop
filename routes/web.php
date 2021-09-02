@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\TimeController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,14 @@ Route::get('/register', function() {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 
   Route::middleware(['role:superadmin|owner|staff'])->group(function () {
+
+    //
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+    //Dashboard
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     //staff
     Route::resource('order', OrderController::class);
 
@@ -80,8 +89,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
   });
 
   Route::middleware(['role:superadmin|owner'])->group(function () {
-    //Dashboard
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
   
     Route::resources([
       'location' => LocationController::class,

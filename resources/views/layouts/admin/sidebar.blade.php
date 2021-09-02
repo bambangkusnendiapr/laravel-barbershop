@@ -14,7 +14,8 @@
         <img src="{{ asset('img/bukti_transfer/bukti.jpg') }}" class="img-circle elevation-2" alt="User Image">
       </div> -->
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->first_name }}</a>
+        <a href="{{ route('profile.index') }}" class="d-inline">{{ Auth::user()->first_name }}</a>@role('staff') &nbsp;
+        <span class="right badge badge-primary">{{ Auth::user()->lokasi->name }}</span>@endrole
       </div>
     </div>
 

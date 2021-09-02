@@ -21,6 +21,7 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('wa.css') }}">
 
     <title>Barbershop</title>
   </head>
@@ -32,7 +33,7 @@
       </div>
       </nav>
     
-    <h2 class="text-center mb-5 ">Tentukan cabang terdekat Anda!</h2>
+    <h2 class="text-center mb-5 ">@yield('judul')</h2>
     <div class="main">
       @yield('content')
     </div>
