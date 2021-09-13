@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Time;
 use Illuminate\Support\Facades\DB;
 use File;
+use Carbon\Carbon;
 
 class FrontController extends Controller
 {
@@ -192,6 +193,190 @@ class FrontController extends Controller
 
     public function addStaff(Request $request)
     {
+        //definisi jam
+        $jam9    = Carbon::createFromTime(9, 00, 00, 'Asia/Jakarta');
+        $jam9_30 = Carbon::createFromTime(9, 30, 00, 'Asia/Jakarta');
+        $jam10    = Carbon::createFromTime(10, 00, 00, 'Asia/Jakarta');
+        $jam10_30 = Carbon::createFromTime(10, 30, 00, 'Asia/Jakarta');
+        $jam11    = Carbon::createFromTime(11, 00, 00, 'Asia/Jakarta');
+        $jam11_30 = Carbon::createFromTime(11, 30, 00, 'Asia/Jakarta');
+        $jam12    = Carbon::createFromTime(12, 00, 00, 'Asia/Jakarta');
+        $jam12_30 = Carbon::createFromTime(12, 30, 00, 'Asia/Jakarta');
+        $jam13    = Carbon::createFromTime(13, 00, 00, 'Asia/Jakarta');
+        $jam13_30 = Carbon::createFromTime(13, 30, 00, 'Asia/Jakarta');
+        $jam14    = Carbon::createFromTime(14, 00, 00, 'Asia/Jakarta');
+        $jam14_30 = Carbon::createFromTime(14, 30, 00, 'Asia/Jakarta');
+        $jam15    = Carbon::createFromTime(15, 00, 00, 'Asia/Jakarta');
+        $jam15_30 = Carbon::createFromTime(15, 30, 00, 'Asia/Jakarta');
+        $jam16    = Carbon::createFromTime(16, 00, 00, 'Asia/Jakarta');
+        $jam16_30 = Carbon::createFromTime(16, 30, 00, 'Asia/Jakarta');
+        $jam17    = Carbon::createFromTime(17, 00, 00, 'Asia/Jakarta');
+        $jam17_30 = Carbon::createFromTime(17, 30, 00, 'Asia/Jakarta');
+        $jam18    = Carbon::createFromTime(18, 00, 00, 'Asia/Jakarta');
+        $jam18_30 = Carbon::createFromTime(18, 30, 00, 'Asia/Jakarta');
+        $jam19    = Carbon::createFromTime(19, 00, 00, 'Asia/Jakarta');
+        $jam19_30 = Carbon::createFromTime(19, 30, 00, 'Asia/Jakarta');
+        $jam20    = Carbon::createFromTime(20, 00, 00, 'Asia/Jakarta');
+        $jam20_30 = Carbon::createFromTime(20, 30, 00, 'Asia/Jakarta');
+        $jam21    = Carbon::createFromTime(21, 00, 00, 'Asia/Jakarta');
+
+        $sekarang = Carbon::now();
+
+        if(date('Y-m-d') == $request->date) {
+            switch ($request->time) {
+                case 1:
+                    if($jam9 < $sekarang || $jam9 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 2:
+                    if($jam9_30 < $sekarang || $jam9_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 3:
+                    if($jam10 < $sekarang || $jam10 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 4:
+                    if($jam10_30 < $sekarang || $jam10_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 5:
+                    if($jam11 < $sekarang || $jam11 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 6:
+                    if($jam11_30 < $sekarang || $jam11_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 7:
+                    if($jam12 < $sekarang || $jam12 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 8:
+                    if($jam12_30 < $sekarang || $jam12_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 9:
+                    if($jam13 < $sekarang || $jam13 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 10:
+                    if($jam13_30 < $sekarang || $jam13_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 11:
+                    if($jam14 < $sekarang || $jam14 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 12:
+                    if($jam14_30 < $sekarang || $jam14_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 13:
+                    if($jam15 < $sekarang || $jam15 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 14:
+                    if($jam15_30 < $sekarang || $jam15_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 15:
+                    if($jam16 < $sekarang || $jam16 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 16:
+                    if($jam16_30 < $sekarang || $jam16_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 17:
+                    if($jam17 < $sekarang || $jam17 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 18:
+                    if($jam17_30 < $sekarang || $jam17_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 19:
+                    if($jam18 < $sekarang || $jam18 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 20:
+                    if($jam18_30 < $sekarang || $jam18_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 21:
+                    if($jam19 < $sekarang || $jam19 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 22:
+                    if($jam19_30 < $sekarang || $jam19_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 23:
+                    if($jam20 < $sekarang || $jam20 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 24:
+                    if($jam20_30 < $sekarang || $jam20_30 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+                case 25:
+                    if($jam21 < $sekarang || $jam21 < $sekarang->addHours(1) ) {
+                        return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
+                    }
+                    break;
+            }
+        }
+
+        // return "bisa";
+        
+
+        // if($jam_delapan_malam > $sekarang && $jam_delapan_malam > $sekarang->addHours(1) ) {
+        //     return "bisa";
+        // } else {
+        //     return "ga bisa";
+        // }
+
+
+        // get the current time
+        // $current = Carbon::now();
+        // $sekarang = Carbon::now();
+
+        // add 30 days to the current time
+        // $trialExpires = $current->addHours(5);
+
+        // echo $sekarang ."=". $trialExpires; die();
+
+        // if(date('Y-m-d') == $request->date) {
+        //     return "sama";
+        // } else {
+        //     return "ga sama";
+        // }
+
         $orders = Order::where('lunas', '!=', 'Approved')->get();
         if($request->date) {
 

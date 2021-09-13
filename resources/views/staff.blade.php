@@ -43,7 +43,7 @@
            </div>
            <div class="mb-3 mt-3">
               <label class="form-label">Select Date</label>
-              <input name="date" required type="date" class="form-control" min="2018-06-07T08:00" max="2022-06-14T22:00"
+              <input name="date" required type="date" class="form-control" min="2013-12-25"
               @if(session('cart_staff'))
                 value="{{ session('cart_staff')['date'] }}""
               @endif
@@ -87,3 +87,10 @@
   </div>
 
 @endsection
+
+@push('script')
+<script>
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("date")[0].setAttribute('min', today);
+</script>
+@endpush

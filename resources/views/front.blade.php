@@ -14,6 +14,7 @@
       <p> tambah 1 jam {{  now()->addMinutes(5) }}</p> -->
 
         @foreach($locations as $location)
+
           <div class="mb-4">
               <a href="{{ route('locationToService', $location->id) }}" class="btn btn-dark btn-lg w-100">{{ $location->name }}</a>
           </div>
@@ -37,8 +38,17 @@
           <a href="{{ route('unsetCart') }}" class="btn btn-danger">Unset All Cart</a>
         </div> -->
 
+        <!-- <input name="somedate" type="date" min="2013-12-25"> -->
+
       </div>
     </div>
   </div>
 
 @endsection
+
+@push('script')
+<script>
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("somedate")[0].setAttribute('min', today);
+</script>
+@endpush
