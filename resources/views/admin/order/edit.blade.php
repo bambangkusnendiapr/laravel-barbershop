@@ -84,10 +84,10 @@
                   </div>
                   <hr>
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Select Staff</label>
+                    <label class="col-sm-2 col-form-label">Select Capster</label>
                     <div class="col-sm-10">
                       <select name="staff" class="form-control">
-                        <option selected disabled value="">Select Staff</option>
+                        <option selected disabled value="">Select Capster</option>
                         @foreach($staffs as $staff)
                           <option value="{{ $staff->id }}" {{ $order->staff == $staff->id ? 'selected':'' }}>{{ $staff->first_name }}</option>
                         @endforeach

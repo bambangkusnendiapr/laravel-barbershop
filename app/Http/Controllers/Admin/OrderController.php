@@ -68,8 +68,10 @@ class OrderController extends Controller
         $cart = session()->get('cart');
 
         $total = 0;
+        $total_duration = 0;
         foreach($cart as $id => $details) {
             $total += $details['price'] * $details['quantity'];
+            $total_duration += $details['duration'] * $details['quantity'];
         }
 
         $customer = User::where('email', $request->email)->first();
@@ -107,6 +109,7 @@ class OrderController extends Controller
             'time_id' => $request->time,
             'net' => $total,
             'gross' => $total,
+            'total_duration' => $total_duration,
             'note' => $request->note,
             'lunas' => 'Approved',
         ]);

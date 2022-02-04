@@ -14,7 +14,8 @@
         <a href="/customer" class="btn btn-dark mb-3 btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         <a href="/" class="btn btn-primary mb-3 btn-sm">Change Location</a>
         <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-success mb-3 btn-sm">Select Other Service</a>
-        <a href="/staff" class="btn btn-warning mb-3 btn-sm">Change Staff or Date Time</a>
+        <a href="{{ route('tanggal') }}" class="btn btn-secondary btn-sm mb-3">Change Date</a>
+        <a href="/staff" class="btn btn-warning mb-3 btn-sm">Change Capster or Date Time</a>
         <a href="/customer" class="btn btn-danger mb-3 btn-sm">Change Customer</a>
 
       <div class="card">
@@ -25,7 +26,7 @@
 
             @if(session('cart_staff'))
               <div>
-                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
+                <div class="d-inline">Capster :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
               </div>
             @endif
 
@@ -47,7 +48,7 @@
                   @endforeach
                 @endif
                 <tr>
-                  <th>Barber</th>
+                  <th>Capster</th>
                   @php $cart_staff = session()->get('cart_staff'); @endphp
                   <td>{{ $cart_staff['name'] }}</td>
                 </tr>

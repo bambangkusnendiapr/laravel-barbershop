@@ -28,10 +28,13 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light mb-5 ">
       <div class="container flex justify-content-around align-items-center align-self-center">
-        <a class="navbar-brand align-items-center align-self-center" href="/"><img src="{{ asset('img/logo.jpeg') }}" width="85" alt=""><span class="logo"> <span class="logo-warna">Niel</span> Barbershop</span></a>
-        <a class="btn btn-info" href="{{ route('search.code') }}"><i class="fas fa-search"></i> Search Code</a>
+        <a class="navbar-brand align-items-center align-self-center" href="/"><img src="{{ asset('img/logo.png') }}" width="85" alt=""><span class="logo"> <span class="logo-warna">Niel</span> Barbershop</span></a>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a class="btn btn-primary" href="{{ route('antrian') }}"><i class="fab fa-buffer"></i> Antrian</a>
+          <a class="btn btn-success" href="{{ route('search.code') }}"><i class="fas fa-search"></i> Search Code</a>
+        </div>
       </div>
-      </nav>
+    </nav>
     
     <h2 class="text-center mb-5 ">@yield('judul')</h2>
     <div class="main">

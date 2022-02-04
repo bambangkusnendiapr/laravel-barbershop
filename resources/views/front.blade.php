@@ -20,6 +20,8 @@
           </div>
         @endforeach
 
+        
+
         <!-- @if(session('cart_location'))
           <p>{{ session('cart_location')['lokasi']['name'] }}</p>
           <p>ada cart location</p>

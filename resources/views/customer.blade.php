@@ -14,7 +14,8 @@
         <a href="/staff" class="btn btn-dark mb-3"><i class="bi bi-arrow-left"></i> Back</a>
         <a href="/" class="btn btn-primary mb-3">Change Location</a>
         <a href="{{ route('locationToService', session('cart_location')['lokasi']['id']) }}" class="btn btn-success mb-3">Select Other Service</a>
-        <a href="/staff" class="btn btn-warning mb-3">Change Staff or Date Time</a>
+        <a href="{{ route('tanggal') }}" class="btn btn-secondary mb-3">Change Date</a>
+        <a href="/staff" class="btn btn-warning mb-3">Change Capster or Time</a>
 
       <div class="card">
         <form action="{{ route('addCustomer') }}" method="post">
@@ -24,7 +25,7 @@
 
             @if(session('cart_staff'))
               <div>
-                <div class="d-inline">Staff :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
+                <div class="d-inline">Capster :  {{ session('cart_staff')['name'] }} | Date Time :  {{ session('cart_staff')['date_time']->format('d F Y') }} {{ session('cart_staff')['jam'] }}</div>
               </div>
               <br>
             @endif

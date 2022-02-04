@@ -1,6 +1,6 @@
 @extends('layouts.admin.main')
 @section('staff', 'active')
-@section('title', 'Edit Staff')
+@section('title', 'Edit Capster')
 @section('content')
 
 <div class="content-wrapper">
@@ -9,13 +9,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Edit Staff</h1>
+          <h1>Edit Capster</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item"><a href="#">Staff</a></li>
-            <li class="breadcrumb-item active">Edit Staff</li>
+            <li class="breadcrumb-item"><a href="#">Capster</a></li>
+            <li class="breadcrumb-item active">Edit Capster</li>
           </ol>
         </div>
       </div>

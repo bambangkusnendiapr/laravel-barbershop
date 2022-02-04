@@ -18,7 +18,7 @@ class CreateServicesTable extends Migration
             $table->foreignId('category_id');
             $table->string('name');
             $table->integer('duration');
-            $table->enum('time', ['Hr', 'mins']);
+            $table->enum('time', ['Hr', 'mins'])->default('mins');
             $table->integer('price');
             $table->text('desc')->nullable();
             $table->timestamps();

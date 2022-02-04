@@ -12,6 +12,10 @@
         </div>
       @elseif($order->lunas == 'Payment')
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong>Dimohon untuk berada di lokasi minimal 5 menit sebelumnya.</strong>
+          <br>
+          <strong class="text-danger">Jika sudah terlewat jamnya maka dianggap hangus.</strong>
+          <br>
           Jika sudah upload bukti transfer silahkan tunggu persetujuan admin atau bisa langsung kontak admin pada tombol Whatsapp di bawah. 
         </div>
       @else
@@ -54,7 +58,7 @@
                   </tr>
                 @endforeach
               <tr>
-                <th>Barber</th>
+                <th>Capster</th>
                 <td>{{ $order->employee->first_name }}</td>
               </tr>
               <tr>
@@ -95,6 +99,9 @@
 
           <div class="form-group mt-5">
             @if($order->images)
+              <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Lihat Bukti Transfer
+              </button> <br>
               <img id="img" src="{{ url('img/bukti_transfer/'.$order->images)}}" width="100px" height="100px"/>
             @else
               <img id="img" src="{{ url('img/bukti_transfer/bukti.jpg')}}" width="100px" height="100px"/>
@@ -108,6 +115,11 @@
           <div>
             <button type="submit" class="btn btn-primary w-100">Upload File</button>
           </div>
+          @else
+          <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Lihat Bukti Transfer
+          </button> <br>
+          <img id="img" src="{{ url('img/bukti_transfer/'.$order->images)}}" width="100px" height="100px"/>
           @endif
 
           </div>
@@ -118,7 +130,26 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bukti Transfer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="img" class="img-fluid" src="{{ url('img/bukti_transfer/'.$order->images)}}" height="80%"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <a class='fixed-whatsapp' href="http://wa.me/{{ $wa->hp }}" rel='nofollow noopener' target='_blank' title='Konfirmasi Admin Barber' />
+
 
 @endsection
 

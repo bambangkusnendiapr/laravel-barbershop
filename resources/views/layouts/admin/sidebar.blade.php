@@ -88,7 +88,15 @@
           <a href="{{ route('staff.index') }}" class="nav-link @yield('staff')">
             <i class="nav-icon fas fa-id-card"></i>
             <p>
-              Staff
+              Capster
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('pelanggan') }}" class="nav-link @yield('pelanggan')">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Pelanggan
             </p>
           </a>
         </li>
@@ -110,7 +118,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-staff">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Staff</p>
+                <p>Capster</p>
               </a>
             </li>
           </ul>
@@ -175,7 +183,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-success">
-          <h4 class="modal-title">Cetak Laporan Staff</h4>
+          <h4 class="modal-title">Cetak Laporan Capster</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

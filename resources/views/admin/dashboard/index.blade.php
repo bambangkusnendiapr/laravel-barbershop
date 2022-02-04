@@ -47,7 +47,7 @@
             <div class="inner">
               <h3>{{ $staff->count() }}</h3>
 
-              <p>Staff</p>
+              <p>Capster</p>
             </div>
             <div class="icon">
               <i class="fas fa-id-card"></i>
@@ -61,7 +61,7 @@
             <div class="inner">
               <h3>{{ $members->count() }}</h3>
 
-              <p>Members</p>
+              <p>Pelanggan</p>
             </div>
             <div class="icon">
               <i class="fas fa-user-tie"></i>
@@ -221,7 +221,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
-                Grafik Staff
+                Grafik Capster
               </h3>
 
               <div class="card-tools">
@@ -239,7 +239,7 @@
                   <table class="table table-striped table-sm">
                     <tr>
                       <th>Location</th>
-                      <th>Staff</th>
+                      <th>Capster</th>
                     </tr>
                     @foreach($locations as $location)
                       <tr>

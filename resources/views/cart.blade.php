@@ -31,18 +31,22 @@
                   <th>Price</th>
                   <th>QTY</th>
                   <th>Sub Total</th>
+                  <th>Sub Duration</th>
                   <th>Action</th>
                 </tr>
               </thead>
             @php $total = 0; @endphp
+            @php $total_duration = 0; @endphp
               @if(session('cart'))
                 @foreach(session('cart') as $id => $details)
                   @php $total += $details['price'] * $details['quantity'] @endphp
+                  @php $total_duration += $details['duration'] * $details['quantity'] @endphp
                   <tr>
-                    <td>{{ $details['name'] }}</td>
+                    <td>{{ $details['name'] }} | {{ $details['duration'] }}</td>
                     <td>{{ $details['price'] }} K</td>
                     <td><input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" /></td>
                     <td>{{ $details['price'] * $details['quantity'] }} K</td>
+                    <td>{{ $details['duration'] * $details['quantity'] }} mins</td>
                     <td>
                       <button class="btn btn-info btn-sm update-cart d-inline" data-id="{{ $id }}"><i class="bi bi-arrow-clockwise"></i></button>
                       <a href="{{ route('deleteService', $id) }}" class="btn btn-sm btn-danger d-inline"><i class="bi bi-trash"></i></a>
@@ -55,10 +59,10 @@
           <div class="card-footer bg-dark">
             <div class="row">
               <div class="col-md-6">
-                  <span class="text-light">GRAND TOTAL :  Ksh {{ $total }}</span>
+                  <span class="text-light">GRAND TOTAL :  Ksh {{ $total }} | Duration {{ $total_duration }}</span>
               </div>
               <div class="col-md-6">
-                <a href="{{ route('staff') }}" type="submit" class="btn btn-light w-100">NEXT</a>
+                <a href="{{ route('tanggal') }}" type="submit" class="btn btn-light w-100">NEXT</a>
               </div>
             </div>
           </div>

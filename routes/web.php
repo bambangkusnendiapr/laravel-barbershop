@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\TimeController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PelangganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,9 @@ Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
 Route::get('/delete-service/{id}', [FrontController::class, 'deleteService'])->name('deleteService');
 Route::patch('update-cart', [FrontController::class, 'update']);
 
+Route::get('/tanggal', [FrontController::class, 'tanggal'])->name('tanggal');
+Route::post('/tanggal', [FrontController::class, 'addTanggal'])->name('addTanggal');
+
 Route::get('/staff', [FrontController::class, 'staff'])->name('staff');
 Route::post('/staff', [FrontController::class, 'addStaff'])->name('addStaff');
 
@@ -45,6 +49,7 @@ Route::post('/payment', [FrontController::class, 'addPayment'])->name('addPaymen
 Route::get('/detail-payment/{kode}', [FrontController::class, 'detail_payment'])->name('detail_payment');
 Route::put('/upload-bukti/{id}', [FrontController::class, 'uploadBukti'])->name('uploadBukti');
 
+Route::get('/antrian', [FrontController::class, 'antrian'])->name('antrian');
 Route::get('/search-code', [FrontController::class, 'search_code'])->name('search.code');
 
 Route::get('/unset-cart', [FrontController::class, 'unsetCart'])->name('unsetCart');
@@ -105,6 +110,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function() {
 
     //staff
     Route::post('laporan-staff', [LaporanController::class, 'staff'])->name('laporan.staff');
+
+    //pelanggan
+    Route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan');
   
   });
 

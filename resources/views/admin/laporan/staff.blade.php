@@ -34,7 +34,7 @@
           <thead>
           <tr>
             <th>#</th>
-            <th>Staff</th>
+            <th>Capster</th>
             <th>Melayani</th>
             <th>Jumlah</th>
           </tr>

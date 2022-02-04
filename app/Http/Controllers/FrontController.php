@@ -33,6 +33,10 @@ class FrontController extends Controller
         // echo now()->addMinutes(5);
         // die();
 
+        // $jam9    = Carbon::createFromTime(9, 00, 00, 'Asia/Jakarta');
+
+        // echo $jam9->addMinutes(30); die();
+
         return view('front', [
             'locations' => Location::all(),
         ]);
@@ -169,10 +173,54 @@ class FrontController extends Controller
         }
     }
 
+    public function tanggal()
+    {
+        $cart = session()->get('cart');
+        $cart_location = session()->get('cart_location');
+
+        if(!$cart) {
+            if(!$cart_location) {
+                return redirect()->route('front');
+            }
+            return redirect()->route('locationToService', $cart_location['lokasi']['id']);
+        }
+
+        return view('tanggal');
+    }
+
+    public function addTanggal(Request $request)
+    {
+        $cart_tanggal = session()->get('cart_tanggal');
+
+        //jika tidak ada cart maka tambahkan
+        if(!$cart_tanggal) {
+            $cart_tanggal = [
+                    'tanggal1' => new \DateTime($request->date),
+                    'tanggal2' => $request->date,
+            ];
+            session()->put('cart_tanggal', $cart_tanggal);
+        } else {
+            // jika ada cart
+            $cart_tanggal = session()->get('cart_tanggal');
+
+            unset($cart_tanggal);
+            session()->put('cart_tanggal');
+
+            $cart_tanggal = [
+                'tanggal1' => new \DateTime($request->date),
+                'tanggal2' => $request->date,
+            ];
+            session()->put('cart_tanggal', $cart_tanggal);
+        }
+
+        return redirect()->route('staff');
+    }
+
     public function staff()
     {
         $cart = session()->get('cart');
         $cart_location = session()->get('cart_location');
+        $cart_tanggal = session()->get('cart_tanggal');
         // $cart_staff = session()->get('cart_staff');
         // dd($cart_staff['date_time']);
         // return $cart_location['lokasi']['id'];
@@ -188,6 +236,7 @@ class FrontController extends Controller
         return view('staff', [
             'staffs' => User::whereRoleIs('staff')->where('location_id', $cart_location['lokasi']['id'])->get(),
             'times' => Time::orderBy('jam','asc')->get(),
+            'antrian' => Order::where('date', $cart_tanggal['tanggal2'])->where('lunas', '!=', 'Approved')->orderBy('time_id', 'ASC')->get(),
         ]);
     }
 
@@ -220,132 +269,134 @@ class FrontController extends Controller
         $jam20_30 = Carbon::createFromTime(20, 30, 00, 'Asia/Jakarta');
         $jam21    = Carbon::createFromTime(21, 00, 00, 'Asia/Jakarta');
 
+        // addMinutes(30)
+
         $sekarang = Carbon::now();
 
         if(date('Y-m-d') == $request->date) {
             switch ($request->time) {
                 case 1:
-                    if($jam9 < $sekarang || $jam9 < $sekarang->addHours(1) ) {
+                    if($jam9 < $sekarang || $jam9 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 2:
-                    if($jam9_30 < $sekarang || $jam9_30 < $sekarang->addHours(1) ) {
+                    if($jam9_30 < $sekarang || $jam9_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 3:
-                    if($jam10 < $sekarang || $jam10 < $sekarang->addHours(1) ) {
+                    if($jam10 < $sekarang || $jam10 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 4:
-                    if($jam10_30 < $sekarang || $jam10_30 < $sekarang->addHours(1) ) {
+                    if($jam10_30 < $sekarang || $jam10_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 5:
-                    if($jam11 < $sekarang || $jam11 < $sekarang->addHours(1) ) {
+                    if($jam11 < $sekarang || $jam11 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 6:
-                    if($jam11_30 < $sekarang || $jam11_30 < $sekarang->addHours(1) ) {
+                    if($jam11_30 < $sekarang || $jam11_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 7:
-                    if($jam12 < $sekarang || $jam12 < $sekarang->addHours(1) ) {
+                    if($jam12 < $sekarang || $jam12 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 8:
-                    if($jam12_30 < $sekarang || $jam12_30 < $sekarang->addHours(1) ) {
+                    if($jam12_30 < $sekarang || $jam12_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 9:
-                    if($jam13 < $sekarang || $jam13 < $sekarang->addHours(1) ) {
+                    if($jam13 < $sekarang || $jam13 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 10:
-                    if($jam13_30 < $sekarang || $jam13_30 < $sekarang->addHours(1) ) {
+                    if($jam13_30 < $sekarang || $jam13_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 11:
-                    if($jam14 < $sekarang || $jam14 < $sekarang->addHours(1) ) {
+                    if($jam14 < $sekarang || $jam14 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 12:
-                    if($jam14_30 < $sekarang || $jam14_30 < $sekarang->addHours(1) ) {
+                    if($jam14_30 < $sekarang || $jam14_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 13:
-                    if($jam15 < $sekarang || $jam15 < $sekarang->addHours(1) ) {
+                    if($jam15 < $sekarang || $jam15 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 14:
-                    if($jam15_30 < $sekarang || $jam15_30 < $sekarang->addHours(1) ) {
+                    if($jam15_30 < $sekarang || $jam15_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 15:
-                    if($jam16 < $sekarang || $jam16 < $sekarang->addHours(1) ) {
+                    if($jam16 < $sekarang || $jam16 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 16:
-                    if($jam16_30 < $sekarang || $jam16_30 < $sekarang->addHours(1) ) {
+                    if($jam16_30 < $sekarang || $jam16_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 17:
-                    if($jam17 < $sekarang || $jam17 < $sekarang->addHours(1) ) {
+                    if($jam17 < $sekarang || $jam17 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 18:
-                    if($jam17_30 < $sekarang || $jam17_30 < $sekarang->addHours(1) ) {
+                    if($jam17_30 < $sekarang || $jam17_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 19:
-                    if($jam18 < $sekarang || $jam18 < $sekarang->addHours(1) ) {
+                    if($jam18 < $sekarang || $jam18 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 20:
-                    if($jam18_30 < $sekarang || $jam18_30 < $sekarang->addHours(1) ) {
+                    if($jam18_30 < $sekarang || $jam18_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 21:
-                    if($jam19 < $sekarang || $jam19 < $sekarang->addHours(1) ) {
+                    if($jam19 < $sekarang || $jam19 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 22:
-                    if($jam19_30 < $sekarang || $jam19_30 < $sekarang->addHours(1) ) {
+                    if($jam19_30 < $sekarang || $jam19_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 23:
-                    if($jam20 < $sekarang || $jam20 < $sekarang->addHours(1) ) {
+                    if($jam20 < $sekarang || $jam20 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 24:
-                    if($jam20_30 < $sekarang || $jam20_30 < $sekarang->addHours(1) ) {
+                    if($jam20_30 < $sekarang || $jam20_30 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
                 case 25:
-                    if($jam21 < $sekarang || $jam21 < $sekarang->addHours(1) ) {
+                    if($jam21 < $sekarang || $jam21 < $sekarang->addMinutes(30) ) {
                         return redirect()->back()->with(['warning' => 'Silahkan Pilih waktu yang lain']);
                     }
                     break;
@@ -377,12 +428,173 @@ class FrontController extends Controller
         //     return "ga sama";
         // }
 
+        $waktu;
+        $waktu_pemesan;
         $orders = Order::where('lunas', '!=', 'Approved')->get();
         if($request->date) {
 
             foreach($orders as $order) {
                 $cek_date = new \DateTime($request->date);
-                if($cek_date == $order->date && $request->staff == $order->staff && $request->time == $order->time_id) {
+
+                //definisi jam telah order
+                switch ($order->time_id) {
+                  case 1:
+                    $waktu = $jam9;
+                      break;
+                  case 2:
+                    $waktu = $jam9_30;
+                      break;
+                  case 3:
+                    $waktu = $jam10;
+                      break;
+                  case 4:
+                    $waktu = $jam10_30;
+                      break;
+                  case 5:
+                    $waktu = $jam11;
+                      break;
+                  case 6:
+                    $waktu = $jam11_30;
+                      break;
+                  case 7:
+                    $waktu = $jam12;
+                      break;
+                  case 8:
+                    $waktu = $jam12_30;
+                      break;
+                  case 9:
+                    $waktu = $jam13;
+                      break;
+                  case 10:
+                    $waktu = $jam13_30;
+                      break;
+                  case 11:
+                    $waktu = $jam14;
+                      break;
+                  case 12:
+                    $waktu = $jam14_30;
+                      break;
+                  case 13:
+                    $waktu = $jam15;
+                      break;
+                  case 14:
+                    $waktu = $jam15_30;
+                      break;
+                  case 15:
+                    $waktu = $jam16;
+                      break;
+                  case 16:
+                    $waktu = $jam16_30;
+                      break;
+                  case 17:
+                    $waktu = $jam17;
+                      break;
+                  case 18:
+                    $waktu = $jam17_30;
+                      break;
+                  case 19:
+                    $waktu = $jam18;
+                      break;
+                  case 20:
+                    $waktu = $jam18_30;
+                      break;
+                  case 21:
+                    $waktu = $jam19;
+                      break;
+                  case 22:
+                    $waktu = $jam19_30;
+                      break;
+                  case 23:
+                    $waktu = $jam20;
+                      break;
+                  case 24:
+                    $waktu = $jam20_30;
+                      break;
+                  case 25:
+                    $waktu = $jam21;
+                      break;
+                }
+
+                //definisi jam request
+                switch ($request->time) {
+                  case 1:
+                    $waktu_pemesan = $jam9;
+                      break;
+                  case 2:
+                    $waktu_pemesan = $jam9_30;
+                      break;
+                  case 3:
+                    $waktu_pemesan = $jam10;
+                      break;
+                  case 4:
+                    $waktu_pemesan = $jam10_30;
+                      break;
+                  case 5:
+                    $waktu_pemesan = $jam11;
+                      break;
+                  case 6:
+                    $waktu_pemesan = $jam11_30;
+                      break;
+                  case 7:
+                    $waktu_pemesan = $jam12;
+                      break;
+                  case 8:
+                    $waktu_pemesan = $jam12_30;
+                      break;
+                  case 9:
+                    $waktu_pemesan = $jam13;
+                      break;
+                  case 10:
+                    $waktu_pemesan = $jam13_30;
+                      break;
+                  case 11:
+                    $waktu_pemesan = $jam14;
+                      break;
+                  case 12:
+                    $waktu_pemesan = $jam14_30;
+                      break;
+                  case 13:
+                    $waktu_pemesan = $jam15;
+                      break;
+                  case 14:
+                    $waktu_pemesan = $jam15_30;
+                      break;
+                  case 15:
+                    $waktu_pemesan = $jam16;
+                      break;
+                  case 16:
+                    $waktu_pemesan = $jam16_30;
+                      break;
+                  case 17:
+                    $waktu_pemesan = $jam17;
+                      break;
+                  case 18:
+                    $waktu_pemesan = $jam17_30;
+                      break;
+                  case 19:
+                    $waktu_pemesan = $jam18;
+                      break;
+                  case 20:
+                    $waktu_pemesan = $jam18_30;
+                      break;
+                  case 21:
+                    $waktu_pemesan = $jam19;
+                      break;
+                  case 22:
+                    $waktu_pemesan = $jam19_30;
+                      break;
+                  case 23:
+                    $waktu_pemesan = $jam20;
+                      break;
+                  case 24:
+                    $waktu_pemesan = $jam20_30;
+                      break;
+                  case 25:
+                    $waktu_pemesan = $jam21;
+                      break;
+                }
+
+                if($cek_date == $order->date && $request->staff == $order->staff && $waktu_pemesan >= $waktu && $waktu_pemesan <= $waktu->addMinutes($order->total_duration)) {
                     // dd($request->date);
                     return redirect()->back()->with(['warning' => 'Mohon Maaf! staff dan waktu yang anda pilih telah dibooking orang lain, silahkan pilih staff / waktu yang berbeda.']);
                 }
@@ -505,8 +717,10 @@ class FrontController extends Controller
         $cart = session()->get('cart');
 
         $total = 0;
+        $total_duration = 0;
         foreach($cart as $id => $details) {
             $total += $details['price'] * $details['quantity'];
+            $total_duration += $details['duration'] * $details['quantity'];
         }
 
         // dd($cart);
@@ -554,6 +768,7 @@ class FrontController extends Controller
             'time_id' => $cart_staff['time'],
             'net' => $total,
             'gross' => $total,
+            'total_duration' => $total_duration,
             'note' => $cart_customer['note'],
         ]);
 
@@ -625,6 +840,13 @@ class FrontController extends Controller
         return redirect()->back();
     }
 
+    public function antrian()
+    {
+        return view('antrian', [
+            'order' => Order::where('lunas', '!=', 'Approved')->orderBy('date', 'ASC')->orderBy('time_id', 'ASC')->get(),
+        ]);
+    }
+
     public function search_code()
     {
         $search = false;
@@ -650,15 +872,18 @@ class FrontController extends Controller
         $cart_location = session()->get('cart_location');
         $cart_staff = session()->get('cart_staff');
         $cart_customer = session()->get('cart_customer');
+        $cart_tanggal = session()->get('cart_tanggal');
 
         unset($cart);
         unset($cart_location);
         unset($cart_staff);
         unset($cart_customer);
+        unset($cart_tanggal);
 
         session()->put('cart');
         session()->put('cart_location');
         session()->put('cart_staff');
         session()->put('cart_customer');
+        session()->put('cart_tanggal');
     }
 }

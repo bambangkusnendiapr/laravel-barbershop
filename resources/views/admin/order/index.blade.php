@@ -49,7 +49,7 @@
                     <th>Bukti Transfer</th>
                     <th>Code</th>
                     <th>Customer</th>
-                    <th>Staff</th>
+                    <th>Capster</th>
                     <th>Location</th>
                     <th>Payment</th>
                     <th>DateTime</th>
